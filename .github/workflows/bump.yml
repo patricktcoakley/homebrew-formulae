@@ -16,8 +16,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       
+      - name: Set up Homebrew
+        id: set-up-homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+            
       - name: Bump formula
         uses: Homebrew/actions/bump-packages@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           formulae: gdvm
+          fork: false
