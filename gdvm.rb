@@ -6,7 +6,7 @@ class Gdvm < Formula
   license "MIT"
   head "https://github.com/patricktcoakley/gdvm.git", branch: "main"
 
-  depends_on "dotnet-sdk" => :build
+  depends_on "dotnet" => :build
 
   def install
     ENV["DOTNET_CLI_TELEMETRY_OPTOUT"] = "true"
