@@ -1,8 +1,8 @@
 class Gdvm < Formula
   desc "Godot version manager focused on simplicity"
   homepage "https://github.com/patricktcoakley/gdvm"
-  url "https://github.com/patricktcoakley/gdvm/archive/refs/tags/v1.1.0.tar.gz"
-  sha256 "a96e04d404ad6a7c6906ed40a80921da026508d5e4f9f67ff492e31ab8d3a2c2"
+  url "https://github.com/patricktcoakley/gdvm/archive/refs/tags/v1.1.1.tar.gz"
+  sha256 "d2d60a3b418411256fb89ae009a299887ed786a815dfa0eaa6a3e61c8fc80034"
   license "MIT"
   head "https://github.com/patricktcoakley/gdvm.git", branch: "main"
 
