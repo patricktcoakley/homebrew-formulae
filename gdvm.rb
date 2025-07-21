@@ -11,7 +11,7 @@ class Gdvm < Formula
   def install
     ENV["DOTNET_CLI_TELEMETRY_OPTOUT"] = "true"
 
-    system "dotnet", "publish", "GDVM",
+    system "dotnet", "publish", "GDVM.CLI",
            "-c", "Release",
            "--output", buildpath / "output"
 
