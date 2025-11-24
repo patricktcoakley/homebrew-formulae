@@ -6,12 +6,12 @@ class Fgvm < Formula
   license "MIT"
   head "https://github.com/patricktcoakley/fgvm.git", branch: "main"
 
-  depends_on "dotnet" => :build
+  depends_on "mise" => :build
 
   def install
     ENV["DOTNET_CLI_TELEMETRY_OPTOUT"] = "true"
 
-    system "dotnet", "publish", "Fgvm.Cli",
+    system "mise", "exec", "dotnet@10.0.100", "--", "dotnet", "publish", "Fgvm.Cli",
            "-c", "Release",
            "--output", buildpath / "output"
 
