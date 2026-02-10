@@ -1,17 +1,17 @@
 class Fgvm < Formula
   desc "A friendly Godot version manager"
   homepage "https://github.com/patricktcoakley/fgvm"
-  url "https://github.com/patricktcoakley/fgvm/archive/refs/tags/v2.0.0.tar.gz"
-  sha256 "7c3f0c7febdb68dd5a6e082a4f6960819d82655fd68ffef893abc9babf2ccf52"
+  url "https://github.com/patricktcoakley/fgvm/archive/refs/tags/v2.0.1.tar.gz"
+  sha256 "c912e0a22f90192e37b5f9975e08b70e86ef0374f0c4a47a3386258df2be7199"
   license "MIT"
   head "https://github.com/patricktcoakley/fgvm.git", branch: "main"
 
-  depends_on "mise" => :build
+  depends_on "dotnet" => :build
 
   def install
     ENV["DOTNET_CLI_TELEMETRY_OPTOUT"] = "true"
 
-    system "mise", "exec", "dotnet@10.0.100", "--", "dotnet", "publish", "Fgvm.Cli",
+    system "dotnet", "publish", "Fgvm.Cli",
            "-c", "Release",
            "--output", buildpath / "output"
 
