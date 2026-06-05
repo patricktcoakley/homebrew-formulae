@@ -1,8 +1,8 @@
 class Fgvm < Formula
   desc "A friendly Godot version manager"
   homepage "https://github.com/patricktcoakley/fgvm"
-  url "https://github.com/patricktcoakley/fgvm/archive/refs/tags/v2.0.2.tar.gz"
-  sha256 "d10c637169b2f409720e13144a237f1a5374153809917851246716b6bf9bfca7"
+  url "https://github.com/patricktcoakley/fgvm/archive/refs/tags/v2.1.0.tar.gz"
+  sha256 "3dad455d77c2459841b0b8af67dd064d2dc714129fec6cc1d66c2afc39c3ed13"
   license "MIT"
   head "https://github.com/patricktcoakley/fgvm.git", branch: "main"
 
