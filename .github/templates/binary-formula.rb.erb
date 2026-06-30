@@ -1,0 +1,25 @@
+class <%= formula.fetch(:class_name) %> < Formula
+  desc <%= ruby_string(formula.fetch(:desc)) %>
+  homepage <%= ruby_string(homepage) %>
+  version <%= ruby_string(version) %>
+  license <%= ruby_string(formula.fetch(:license)) %>
+
+<% platforms.each do |platform| -%>
+  on_<%= platform.fetch(:os) %> do
+<% platform.fetch(:archives).each do |archive| -%>
+    on_<%= archive.fetch(:arch) %> do
+      url <%= ruby_string(archive.fetch(:url)) %>
+      sha256 <%= ruby_string(archive.fetch(:sha256)) %>
+    end
+<% end -%>
+  end
+
+<% end -%>
+  def install
+    bin.install <%= ruby_string(formula.fetch(:binary)) %>
+  end
+
+  test do
+    assert_match "Usage:", shell_output("#{bin}/<%= formula.fetch(:binary) %> --help")
+  end
+end

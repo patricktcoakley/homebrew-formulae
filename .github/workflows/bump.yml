@@ -11,18 +11,56 @@ permissions:
 
 jobs:
   bump-formula:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - formula: fgvm
+            repository: patricktcoakley/fgvm
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Homebrew
-        id: set-up-homebrew
-        uses: Homebrew/actions/setup-homebrew@master
+      - name: Update formula
+        id: update-formula
+        run: |
+          set -euo pipefail
 
-      - name: Bump formula
-        uses: Homebrew/actions/bump-packages@master
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          formulae: fgvm
-          fork: false
+          curl -fsSL \
+            -H "Accept: application/vnd.github+json" \
+            -H "User-Agent: patricktcoakley-homebrew-formulae" \
+            "https://api.github.com/repos/${{ matrix.repository }}/releases/latest" \
+            | ruby .github/scripts/update-formula.rb "${{ matrix.formula }}"
+
+      - name: Create pull request
+        if: steps.update-formula.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          FORMULA: ${{ steps.update-formula.outputs.formula }}
+          FORMULA_FILE: ${{ steps.update-formula.outputs.file }}
+          VERSION: ${{ steps.update-formula.outputs.version }}
+        run: |
+          set -euo pipefail
+
+          branch="bump-${FORMULA}-${VERSION}"
+          existing_pr="$(gh pr list --state open --head "${branch}" --json number --jq '.[0].number // ""')"
+
+          if [[ -n "${existing_pr}" ]]; then
+            echo "Pull request #${existing_pr} already exists for ${FORMULA} ${VERSION}."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "${branch}"
+          git add "${FORMULA_FILE}"
+          git commit -m "${FORMULA} ${VERSION}"
+          git fetch origin "${branch}" || true
+          git push --force-with-lease origin "${branch}"
+
+          gh pr create \
+            --base main \
+            --head "${branch}" \
+            --title "${FORMULA} ${VERSION}" \
+            --body "Created by the Bump Homebrew Formulae workflow."
