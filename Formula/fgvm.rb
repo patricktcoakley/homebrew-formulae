@@ -1,28 +1,28 @@
 class Fgvm < Formula
   desc "Friendly Godot version manager"
   homepage "https://github.com/patricktcoakley/fgvm"
-  version "2.6.0"
+  version "2.6.1"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/patricktcoakley/fgvm/releases/download/v2.6.0/fgvm-osx-arm64.tar.gz"
-      sha256 "f2d89824f22c1673deede5365adbdf29cddba64eae57c2fb99de1aeec69fb0c2"
+      url "https://github.com/patricktcoakley/fgvm/releases/download/v2.6.1/fgvm-osx-arm64.tar.gz"
+      sha256 "f21608a979e9969b1b975523119c9a0b933b4a2fcef0bd56147e01d5f4bf079e"
     end
     on_intel do
-      url "https://github.com/patricktcoakley/fgvm/releases/download/v2.6.0/fgvm-osx-x64.tar.gz"
-      sha256 "d99f63a761a7cfca0d1034e71530ac303bd04b3a6093c7ddbdb64010c7351eef"
+      url "https://github.com/patricktcoakley/fgvm/releases/download/v2.6.1/fgvm-osx-x64.tar.gz"
+      sha256 "e4e87dbff6edf291043b1713722a94cf69763469e5f52cfedbc689a2f22e24ac"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/patricktcoakley/fgvm/releases/download/v2.6.0/fgvm-linux-arm64.tar.gz"
-      sha256 "0c69a39257a525f083f15f01e7e17d4a0bfc531444ff18916090c803793ea333"
+      url "https://github.com/patricktcoakley/fgvm/releases/download/v2.6.1/fgvm-linux-arm64.tar.gz"
+      sha256 "f3eeee431c91cec65dc13a6a433c602da2c6ed7aa083b7347cecdab2151f0b16"
     end
     on_intel do
-      url "https://github.com/patricktcoakley/fgvm/releases/download/v2.6.0/fgvm-linux-x64.tar.gz"
-      sha256 "cd02e3ffb420e1789645ba1123cf7b290985fa8d64a653afeffde9fd11720790"
+      url "https://github.com/patricktcoakley/fgvm/releases/download/v2.6.1/fgvm-linux-x64.tar.gz"
+      sha256 "f3e73995e0f7ff3ca1801c3f88072e4d8881f5efc75e43b980bc78161c9ba7d3"
     end
   end
 
